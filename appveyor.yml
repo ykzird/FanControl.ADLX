@@ -1,0 +1,23 @@
+version: 1.0.{build}
+build_cloud: WINDEV2301EVAL
+image: Windows
+configuration: Release
+platform: Any CPU
+clone_folder: C:\Builds
+
+environment:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OUTPUT: true
+  
+install:
+  - cmd: dotnet restore FanControl.ADLX.csproj
+  
+build_script:
+  - cmd: dotnet build Fancontrol.ADLX.sln
+   
+test_script:
+  - cmd: dotnet test
+
+artifacts:
+- path: bin/release
+  name: release.zip
